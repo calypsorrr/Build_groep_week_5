@@ -3,7 +3,7 @@ import requests
 
 username = 'calypsorrr'
 feed_name = 'water'
-aio_key = ''
+aio_key = 'aio_FDpJ62A6QVOgt0pdDQiZxNxxOqN1'
 url = 'https://io.adafruit.com/api/v2/' + username + '/feeds/' + feed_name + '/data'
 
 def sendDataWifi(data):

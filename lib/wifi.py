@@ -6,7 +6,7 @@ import time
 def wifi_connect():
     pycom.heartbeat(False)
     wlan = WLAN(mode=WLAN.STA)
-    wlan.connect(ssid="IoT", auth=(WLAN.WPA2, 'KdGIoT92!'))
+    wlan.connect(ssid="IoT", auth=(WLAN.WPA2, 'KdGIoT22!'))
     while not wlan.isconnected():
         pycom.rgbled(0xFF0000)
     print("WiFi connected succesfully")
