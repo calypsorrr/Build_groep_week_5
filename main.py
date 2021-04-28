@@ -8,7 +8,7 @@ import sensor
 i2c = I2C(0, I2C.MASTER)
 si7021 = SI7021(i2c)
 
-relais = Pin('P2', mode=Pin.OUT)
+relais = Pin('P8', mode=Pin.OUT)
 
 while True:
 	global humidity
