@@ -5,10 +5,13 @@ import machine
 import wifiada
 import sensor
 
+global motor
+
 i2c = I2C(0, I2C.MASTER)
 si7021 = SI7021(i2c)
 
 relais = Pin('P8', mode=Pin.OUT)
+motor = False
 
 while True:
 	global humidity
@@ -19,14 +22,29 @@ while True:
 		print(str(temperature) + " celcius")
 		print(str(humidity) + " %")
 		print("")
-		if humidity <= 70:
-			relais.value(1)
-		else:
+		if humidity <= 60:
+			print("motor aan")
+			motor = True
+		elif humidity > 60 and motor == False:
+			print("deepsleep motor uit")
+			machine.deepsleep(60*1000)
+		elif humidity >= 70:
+			print("deepsleep motor aan naar uit")
+			motor = False
 			relais.value(0)
-		time.sleep(1)
+			machine.deepsleep(60*1000)
+
+		#time.sleep(1)
 	except OSError as e:
+		#motor = False
 		print(e)
-		time.sleep(2)
+		#time.sleep(2)
+
+	if motor == True:
+		relais.value(1)
+	elif motor == False:
+		relais.value(0)
+
 
 	sensor.readuart()
 	distance = sensor.readout()
