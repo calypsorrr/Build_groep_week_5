@@ -8,6 +8,7 @@ def wifi_connect():
     wlan = WLAN(mode=WLAN.STA)
     wlan.connect(ssid="IoT", auth=(WLAN.WPA2, 'KdGIoT22!'))
     while not wlan.isconnected():
+        time.sleep(1)
         pycom.rgbled(0xFF0000)
     print("WiFi connected succesfully")
     pycom.rgbled(0x00FF00)
